@@ -1,0 +1,16 @@
+[project]
+name = "pixelshaper"
+version = "0.0.1"
+description = "Shaping-aware pixel fonts: derive hand-tunable pixel fonts from OpenType donors, GSUB/GPOS intact"
+requires-python = ">=3.12"
+dependencies = [
+    "numpy",
+    "pillow",
+    "freetype-py",
+    "uharfbuzz",
+    "fonttools",
+]
+
+# CLI entry point lands with the T1 packaging work (see DESIGN.md §4):
+# [project.scripts]
+# pixelshaper = "pixelshaper.cli:main"
