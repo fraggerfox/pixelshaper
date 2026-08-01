@@ -1,7 +1,8 @@
 # pixelshaper — design document
 
-Generalizing the manjari-pixel / nupuram-pixel pipeline into a
-donor-agnostic, script-agnostic tool. Written 2026-08-01, distilling two
+Generalizing the [Manjari](https://git.planet-express.in/manjari-pixel)
+and Nupuram pixel fonts into a pipeline for donor-agnostic,
+script-agnostic pixel-font derivation. Written 2026-08-01, distilling two
 weeks of hands-on work getting Malayalam onto an 11-row LED badge.
 
 ## 1. Goals
@@ -46,6 +47,13 @@ pixelshaper status   # coverage report: corpus vs traced vs hand-edited
 (Current equivalents: pixelize.py / compile_font.py / verify_render.py;
 `status` is new.)
 
+The CLI is a thin layer over a **modular library**: each stage lives in
+its own module (`pixelshaper.trace`, `.build`, `.render`, `.status`,
+plus shared `.glyphart` for the text-art format and `.donor` for font
+loading), importable as plain functions. Consumers other than the CLI —
+the LED simulator, a future web preview, tests — call the library
+directly rather than shelling out.
+
 ### Per-project layout
 
 ```
@@ -65,7 +73,10 @@ file = "fonts/Manjari-Regular.ttf"
 # instance = { wght = 400 }        # variable fonts: pin before tracing
 
 [output]
-family = "ManjaPixel"              # donor names are usually OFL RFNs
+family = "ManjariPixel"            # check the donor's OFL: if it declares a
+                                   # Reserved Font Name, the family must not
+                                   # contain it. Manjari and Nupuram declare
+                                   # none, so donor-based names are fine.
 ppem = 14                          # pin explicitly; auto-suggest on trace
 threshold = 0.35
 
@@ -90,7 +101,8 @@ existing files.
 - Grayscale rasterize + per-glyph threshold (mono rasterization destroys
   dotted/thin designs; learned the hard way).
 - Pixel-run → rectangle outlines; hmtx + GPOS anchor quantization.
-- Name-table ppem stamp; family rename for OFL Reserved Font Names.
+- Name-table ppem stamp; family rename (respecting OFL Reserved Font
+  Names where the donor declares them).
 - Render modes: per-word baselines (default), `--shared` single baseline
   (alphabet strips), `--gap N`, span warnings on clipping.
 
@@ -117,7 +129,9 @@ installed tool: their scripts deleted, their `glyphs/` (renamed to
 name-keys), corpus, and fonts kept, each gaining a `pixelshaper.toml`.
 Their git history stays in their own repos; pixelshaper vendors a snapshot
 or submodules them — decide at migration time. All hand-edits survive
-(that's the point of the skip-existing rule and name keying).
+(that's the point of the skip-existing rule and name keying). Since
+neither donor declares an OFL RFN, the families are renamed at migration:
+ManjaPixel → **ManjariPixel**, MalaPixel → **NupuramPixel**.
 
 ## 6. New use case: Devanagari
 
@@ -153,13 +167,13 @@ Corpus starter: full varnamala, matra series on क, common conjuncts
 (क्ष त्र ज्ञ श्र द्ध द्य), reph/rakar words (कर्म प्रेम), a name, a place
 (दिल्ली), and the classic pangram-ish sampler once chosen.
 
-## 7. Open questions
+## 7. Decisions
 
-- License for the tool code (fonts are OFL; MIT or GPL for the tooling?).
-- Repo location: stays under the led-badge umbrella or standalone GitHub
-  with the badge as one consumer?
-- Whether the LED-simulator's native-ppem rendering + scaling toggle gets
-  upstreamed (santhoshtr/malayalam-led-simulator PR) referencing the
-  stamp convention this tool writes.
-- Strike emission (T3) vs stamp-only: revisit when a consumer besides the
-  badge/simulator appears.
+- **Tool license: BSD 2-Clause** (derived fonts remain OFL 1.1).
+- **Canonical repo: `fraggerfox/pixelshaper` on GitHub**, standalone,
+  with the LED badge as one consumer.
+- **Simulator upstreaming** (native-ppem rendering + scaling toggle →
+  santhoshtr/malayalam-led-simulator PR, referencing the stamp
+  convention): yes, but only after this project is complete.
+- **Strike emission (EBDT/EBLC)**: deferred past v1; revisit when a
+  consumer besides the badge/simulator appears.
