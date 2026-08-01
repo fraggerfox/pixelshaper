@@ -31,7 +31,8 @@
             export UV_PYTHON_PREFERENCE=only-system
             export UV_PYTHON=${pkgs.python313}/bin/python3.13
             uv sync 2>/dev/null || true
-            echo "pixelshaper dev shell — see DESIGN.md"
+            echo "pixelshaper dev shell"
+            echo "  uv run pixelshaper -C <project> {trace,build,render,status,migrate}"
           '';
         };
       });
