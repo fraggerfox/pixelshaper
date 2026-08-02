@@ -201,11 +201,16 @@ A glyph file:
 name: amlym
 advance: 13
 left: 0
-top: 7
+top: 6
 
-··●●●●●●●●·●●●●●··
-·●●·●●●●·●●●···●●·
-...
+··············
+·●●●●●●●●●●●··
+●●·●·●·●●·●●●·
+●··●·●··●·●·●·
+●··●·●··●●··●·
+·●·●●●··●·●●●·
+··············
+
 ```
 
 `top` is the grid's top edge relative to the baseline (edit it to shift
