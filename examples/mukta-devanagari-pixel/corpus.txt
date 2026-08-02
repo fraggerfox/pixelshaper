@@ -1,0 +1,9 @@
+# Devanagari coverage: varnamala, the matra series on क, common conjuncts,
+# reph/rakar words, and a few real words. Each line shaped -> glyphs traced.
+अ आ इ ई उ ऊ ऋ ए ऐ ओ औ अं अः
+क ख ग घ ङ च छ ज झ ञ ट ठ ड ढ ण त थ द ध न प फ ब भ म य र ल व श ष स ह ळ
+क का कि की कु कू कृ के कै को कौ कं कः क्
+क्ष त्र ज्ञ श्र द्ध द्य क्त स्त
+कर्म प्रेम धर्म
+नमस्ते भारत हिन्दी
+दिल्ली मुंबई

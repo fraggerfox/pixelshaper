@@ -1,0 +1,9 @@
+name: matraRu.dv
+advance: 0
+left: -3
+top: 1
+
+····
+●●··
+●●●·
+·●●·

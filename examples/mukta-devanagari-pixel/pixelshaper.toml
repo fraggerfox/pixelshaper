@@ -1,0 +1,10 @@
+[donor]
+file = "fonts/Mukta-Regular.ttf"
+
+[output]
+family = "MuktaPixel"
+ppem = 9
+threshold = 0.35
+
+[display]
+strip_height = 11

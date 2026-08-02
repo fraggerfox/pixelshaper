@@ -1,0 +1,10 @@
+name: Visarga.dv
+advance: 1
+left: -1
+top: 6
+
+·●·
+···
+·●·
+···
+·●·
