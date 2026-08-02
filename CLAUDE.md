@@ -1,0 +1,75 @@
+# CLAUDE.md — pixelshaper
+
+Shaping-aware pixel fonts: derive hand-tunable pixel fonts from OpenType
+donors, keeping cmap/GSUB/GPOS intact. Read `README.md` for the concept,
+`USAGE.md` for the conversion walkthrough, `DESIGN.md` for architecture
+decisions and the work-item tiers.
+
+## Layout
+
+```
+pixelshaper/          the library (CLI = thin wrapper, keep it that way)
+  config.py           pixelshaper.toml + corpus.txt -> Project
+  glyphart.py         ●/· text-art format, NAME-keyed files
+  donor.py            fontTools+FreeType+HarfBuzz wrapper
+  trace.py            donor+corpus -> glyphs/*.txt (skip-existing)
+  build.py            glyphs/ -> build/<Family>.ttf
+  render.py           native-ppem 1-bit render -> terminal + PNG
+  status.py           coverage report + migrate (gid->name keys)
+  cli.py              pixelshaper -C <project> {trace,build,render,status,migrate}
+examples/             manjari-pixel (54 hand-edits), nupuram-pixel,
+                      noto-malayalam-pixel (raw auto-trace, USAGE subject)
+```
+
+Dev shell: `nix develop` (uv + native libs). Run everything as
+`uv run pixelshaper -C examples/<name> <subcommand>`.
+
+## Invariants — do not break these
+
+- **Shaping passes through.** build replaces glyph outlines, quantizes
+  hmtx + GPOS coordinates to the pixel grid, rewrites family name records
+  and the ppem stamp — nothing else in the donor changes.
+- **Glyph files are keyed by glyph NAME**, never gid (gids shift across
+  donor versions and orphan hand-edits). Filename = sanitized name;
+  header `name:` is authoritative.
+- **trace skips existing files.** Hand-edits are the project's value;
+  `--force` destroys them and is only safe when `status` shows
+  `hand-edited: 0`.
+- **ppem must stay pinned** in pixelshaper.toml once glyphs exist. New
+  glyphs traced at a different ppem silently land on the wrong grid.
+- The output is only correct at its native ppem; the `-<N>px` stamp in
+  name-table ID 3 is how consumers discover it. Keep writing it.
+
+## Physics cheat-sheet (for advising on quality issues)
+
+- Suggested ppem = strip_height x upem / worst-corpus-line span. It is a
+  property of the donor's proportions: Manjari 14, Nupuram 12, Noto 9 on
+  the same 11 rows.
+- Strokes fatten/fuse -> threshold too low for this donor+ppem (sub-pixel
+  stems light two columns). Strokes break -> too high. Sweep 0.35-0.65;
+  Manjari 0.35@14, Noto 0.45@9, Nupuram-Dots 0.25@12 (dotted strokes).
+- Render clipping warnings are the hand-tuning worklist: compress marks
+  and stacks, not base letters; trim glyph heads, not tails.
+
+## Working conventions
+
+- Validate pipeline changes with a golden diff: render the full corpus of
+  an example before/after and diff the ●/· rows — output must be
+  pixel-identical unless the change intends otherwise.
+- Family naming: check the donor's OFL for Reserved Font Names before
+  using the donor's name (Manjari/Nupuram/Noto Malayalam declare none).
+  Tool code is BSD-2-Clause; derived fonts stay OFL 1.1 with the donor's
+  OFL.txt kept in fonts/.
+- Hand-edits come from the human, reviewed on real hardware; review diffs
+  glyph-by-glyph before committing and describe them in the message
+  (which letters, what changed, why).
+
+## Related (not in this repo)
+
+- Living parents: `../manjari-pixel/` (consumes pixelshaper as editable
+  path dep), `../nupuram-pixel/` (not yet converted).
+- Display consumers: `../led-name-badge-ls32/` (push PNGs via
+  `lednamebadge.py -s 4 -m 0 <png>`; needs exactly strip_height-tall
+  images), `../malayalam-led-simulator/` (reads the ppem stamp in its
+  pixel-scaling mode; re-copy the built TTF + restart its server after
+  font changes).
