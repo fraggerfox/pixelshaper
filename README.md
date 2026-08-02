@@ -73,6 +73,73 @@ license check through trace/build/render to the hand-edit loop — using
 the Noto Sans Malayalam example. Working projects live in
 [examples/](examples/).
 
+## Commands
+
+Every command takes `-C/--project DIR` (default `.`) pointing at a
+directory with a `pixelshaper.toml`. Illustrated with the projects in
+[examples/](examples/):
+
+### `pixelshaper trace [--force]`
+
+Shapes every `corpus.txt` line with the donor via HarfBuzz, collects the
+glyphs that come out (including conjunct ligatures no codepoint maps to
+— Manjari's ക്ത, Mukta's क्ष), rasterizes each at the configured ppem and
+threshold, and writes `glyphs/<name>.txt`. Existing files are **skipped**,
+which is what makes corpus growth safe: adding തലശ്ശേരി to the Manjari
+example traced only the new ശ്ശ ligature and left 70 hand-edited files
+untouched. If `ppem` is unpinned it prints a suggestion — the largest
+size where the worst corpus line fits `strip_height` rows (14 for
+Manjari, 9 for Noto and Mukta on 11 rows: donor proportions in one
+number) — pin it in the toml immediately afterwards.
+
+`--force` retraces everything, **destroying hand-edits**. Only safe when
+`status` reports `hand-edited: 0` — that's how the Noto example's
+threshold was re-swept without loss.
+
+### `pixelshaper build`
+
+Copies the donor, replaces the outlines of every glyph in `glyphs/` with
+pixel squares (1 px = upem/ppem units), quantizes advances and all GPOS
+coordinates to the grid, renames the family, and stamps the native size
+into name-table ID 3 (`ManjariPixel-14px;derived-from-Manjari`). Nothing
+else changes — which is why NotoMalayalamPixel and MuktaPixel shape
+identically to their donors.
+
+### `pixelshaper render [TEXTS...] [--gap N] [--shared]`
+
+Renders at the native ppem in 1-bit mono (no thresholds — a pixel font
+is exact by construction), prints the ●/· grid, and writes a
+`strip_height`-tall white-on-black PNG to `build/`, ready for e.g.
+`lednamebadge.py`. With no TEXTS it renders the whole corpus.
+
+- default placement: each whitespace token gets its own baseline —
+  സന്തോഷ് (tall marks) and മലയാളം (deep tails) each use the full strip;
+- `--gap N`: blank columns between tokens (8–10 reads well scrolling);
+- `--shared`: one baseline for the whole string — used for the alphabet
+  strips, where per-token centring makes the row wave.
+
+`WARNING: ink span … exceeds N rows; clipping` is the hand-tuning
+worklist, not noise: every Malayalam mark compression in the examples
+started as one of these warnings.
+
+### `pixelshaper status`
+
+Coverage report: corpus entries, glyphs needed vs traced vs missing, and
+**hand-edited** — detected, not recorded, by re-tracing each glyph in
+memory and diffing against the file. It reconstructs the Manjari
+example's 54-glyph tuning ledger from the files alone. Note the
+corollary: changing `ppem`/`threshold` after tracing makes *everything*
+report as edited, because the auto-trace baseline moved — pin your
+config.
+
+### `pixelshaper migrate`
+
+One-time upgrade for projects from the pre-pixelshaper scripts: renames
+gid-keyed `0476_z1z1.txt` files to stable name keys (`z1z1.txt`) and
+drops the gid header. Names survive donor updates; gids don't. Both
+Malayalam examples went through this — git tracks the renames, so
+per-glyph history is preserved.
+
 ## Development
 
 ```sh
