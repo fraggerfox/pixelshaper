@@ -18,7 +18,7 @@ pixelshaper/          the library (CLI = thin wrapper, keep it that way)
   status.py           coverage report (hand-edit detection)
   cli.py              pixelshaper -C <project> {trace,build,render,status}
 examples/             manjari-pixel (54 hand-edits), nupuram-pixel,
-                      noto-malayalam-pixel (raw auto-trace, USAGE subject)
+                      noto-sans-malayalam-pixel (raw auto-trace, USAGE subject)
 ```
 
 Dev shell: `nix develop` (uv + native libs). Run everything as

@@ -8,7 +8,7 @@ hardware (an 11-row [FOSSASIA LED badge](https://badgemagic.fossasia.org/)):
 |---|---|---|---|---|---|
 | `manjari-pixel/` | Manjari Regular (SMC) | ManjariPixel | 14 | <img src="../pics/manjari-pixel.jpg" width="260" alt="ManjariPixel on the LED badge"> | Geometric, compact — largest em on 11 rows |
 | `nupuram-pixel/` | Nupuram Dots (SMC) | NupuramPixel | 12 | <img src="../pics/nupuram-pixel.jpg" width="260" alt="NupuramPixel on the LED badge"> | Round, dotted design; the original experiment |
-| `noto-malayalam-pixel/` | Noto Sans Malayalam (Google) | NotoSansMalayalamPixel | 9 | <img src="../pics/noto-sans-malaylam-pixel.jpg" width="260" alt="NotoSansMalayalamPixel on the LED badge"> | The USAGE.md walkthrough project; 40 hand-tuned glyphs. At 9 ppem it does not use the full 11 px height — words render centred with blank rows |
+| `noto-sans-malayalam-pixel/` | Noto Sans Malayalam (Google) | NotoSansMalayalamPixel | 9 | <img src="../pics/noto-sans-malaylam-pixel.jpg" width="260" alt="NotoSansMalayalamPixel on the LED badge"> | The USAGE.md walkthrough project; 40 hand-tuned glyphs. At 9 ppem it does not use the full 11 px height — words render centred with blank rows |
 | `mukta-devanagari-pixel/` | Mukta Regular (Ek Type) | MuktaPixel | 9 | <img src="../pics/mukta-devanagari-pixel.jpg" width="260" alt="MuktaPixel (Devanagari) on the LED badge"> | Devanagari — first non-Malayalam script; auto-trace only. Like Noto, its 9 ppem em does not fill the 11 px height |
 
 Run from the repo root:

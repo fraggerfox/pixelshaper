@@ -2,7 +2,7 @@
 
 A complete walkthrough of turning an outline font into a hand-tunable
 pixel font. Every output below is real, from converting **Noto Sans
-Malayalam** (the `examples/noto-malayalam-pixel/` project); substitute
+Malayalam** (the `examples/noto-sans-malayalam-pixel/` project); substitute
 your own donor and script throughout.
 
 ```sh
@@ -26,7 +26,7 @@ derivative stays OFL 1.1 and the copyright travels with it.
 ## Step 1 — scaffold the project
 
 ```
-noto-malayalam-pixel/
+noto-sans-malayalam-pixel/
 ├── pixelshaper.toml
 ├── corpus.txt
 └── fonts/
@@ -64,7 +64,7 @@ exercise conjuncts, vowel signs and marks:
 ## Step 2 — trace
 
 ```
-$ pixelshaper -C examples/noto-malayalam-pixel trace
+$ pixelshaper -C examples/noto-sans-malayalam-pixel trace
 ppem not pinned; suggesting 9 (worst corpus string fits 11 rows). Pin it
 in pixelshaper.toml to keep the grid stable.
   amlym.txt: 14x7 adv=13
@@ -129,8 +129,8 @@ never what you want).
 ## Step 3 — status
 
 ```
-$ pixelshaper -C examples/noto-malayalam-pixel status
-project: noto-malayalam-pixel  donor: NotoSansMalayalam-Regular.ttf  family: NotoSansMalayalamPixel  ppem: 9
+$ pixelshaper -C examples/noto-sans-malayalam-pixel status
+project: noto-sans-malayalam-pixel  donor: NotoSansMalayalam-Regular.ttf  family: NotoSansMalayalamPixel  ppem: 9
 corpus entries: 6  glyphs needed: 60
 traced: 60/60
 hand-edited: 0
@@ -144,7 +144,7 @@ tuning it reconstructs your ledger exactly (the Manjari example reports
 ## Step 4 — build
 
 ```
-$ pixelshaper -C examples/noto-malayalam-pixel build
+$ pixelshaper -C examples/noto-sans-malayalam-pixel build
 60 glyphs pixelized at 9ppem (1px = 111.1 units) -> build/NotoSansMalayalamPixel.ttf
 ```
 
@@ -159,7 +159,7 @@ Malayalam`) so downstream renderers can discover it.
 ## Step 5 — render
 
 ```
-$ pixelshaper -C examples/noto-malayalam-pixel render മലയാളം
+$ pixelshaper -C examples/noto-sans-malayalam-pixel render മലയാളം
 
 === മലയാളം  (42x11)  -> notosansmalayalampixel-0b10e86f.png ===
 ··········································
