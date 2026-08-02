@@ -3,6 +3,13 @@
 **Shaping-aware pixel fonts** — derive hand-tunable pixel fonts from any
 OpenType donor, GSUB/GPOS intact.
 
+> [!NOTE]
+> **AI-generated code.** This repository was developed with
+> [Claude Code](https://claude.com/claude-code): the tooling code and
+> documentation are largely AI-generated, working under human direction
+> and review. The glyph hand-tuning in the example fonts was done by a
+> human against real LED hardware.
+
 ![Malayalam rendered by ManjariPixel scrolling on an 11-row LED name badge](pics/led-badge-malaylam.jpg)
 
 *Malayalam on an 11-row [FOSSASIA LED name badge](https://badgemagic.fossasia.org/), rendered with
