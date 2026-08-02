@@ -31,17 +31,37 @@ IDs. So we keep the donor's `cmap`/GSUB/GPOS verbatim and replace only the
 glyph *outlines* with pixel squares:
 
 ```mermaid
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "background": "#101014",
+    "primaryColor": "#1c1c24",
+    "primaryTextColor": "#e6e6ea",
+    "primaryBorderColor": "#8a6b2f",
+    "lineColor": "#e8a530",
+    "edgeLabelBackground": "#24241c",
+    "fontFamily": "ui-monospace, monospace",
+    "fontSize": "14px"
+  }
+}}%%
 flowchart TD
-    donor["donor.ttf<br/><i>cmap / GSUB / GPOS</i>"]
-    inventory["glyph inventory<br/><i>every conjunct, ligature and mark<br/>the corpus actually uses</i>"]
-    art["glyphs/&lt;name&gt;.txt<br/><i>●/· text-art grids — the source of truth</i>"]
-    ttf["build/Family.ttf<br/><i>shapes identically to the donor;<br/>pixel-perfect at its native ppem (stamped)</i>"]
+    donor(["donor.ttf<br/><i>cmap / GSUB / GPOS</i>"])
+    inventory(["glyph inventory<br/><i>every conjunct, ligature and mark<br/>the corpus actually uses</i>"])
+    art(["glyphs/&lt;name&gt;.txt<br/><b>●/· text-art grids</b><br/><i>the source of truth</i>"])
+    ttf(["build/Family.ttf<br/><i>shapes identically to the donor;<br/>pixel-perfect at its native ppem (stamped)</i>"])
 
     donor -- "shape corpus (HarfBuzz)" --> inventory
     inventory -- "rasterize + threshold<br/>at one ppem" --> art
     art -- "pixel-square outlines;<br/>quantize metrics + GPOS anchors" --> ttf
     donor -. "shaping tables pass through verbatim" .-> ttf
     art -- "hand-edit, recompile,<br/>judge on hardware" --> art
+
+    classDef stage fill:#1c1c24,stroke:#8a6b2f,color:#e6e6ea,stroke-width:1.5px
+    classDef truth fill:#2a2113,stroke:#ffb000,color:#ffd977,stroke-width:2.5px
+    classDef result fill:#1c241c,stroke:#e8a530,color:#e6e6ea,stroke-width:2px
+    class donor,inventory stage
+    class art truth
+    class ttf result
 ```
 
 HarfBuzz shapes the result exactly as it shapes the donor. Your pixels,
