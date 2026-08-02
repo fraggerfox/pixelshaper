@@ -17,9 +17,15 @@ pixelshaper = "pixelshaper.cli:main"
 [dependency-groups]
 dev = [
     "black",
+    "pytest",
+    "pytest-cov",
     # ruff comes from nixpkgs (the pip wheel is dynamically linked and
     # does not run on NixOS); its config below applies either way.
 ]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--cov=pixelshaper --cov-report=term-missing"
 
 [tool.black]
 line-length = 88
