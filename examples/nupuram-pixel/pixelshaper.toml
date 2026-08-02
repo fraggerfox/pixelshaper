@@ -1,0 +1,10 @@
+[donor]
+file = "fonts/Nupuram-Dots.ttf"
+
+[output]
+family = "NupuramPixel"
+ppem = 12
+threshold = 0.25
+
+[display]
+strip_height = 11

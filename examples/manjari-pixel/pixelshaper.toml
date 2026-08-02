@@ -1,0 +1,10 @@
+[donor]
+file = "fonts/Manjari-Regular.ttf"
+
+[output]
+family = "ManjariPixel"
+ppem = 14
+threshold = 0.35
+
+[display]
+strip_height = 11
