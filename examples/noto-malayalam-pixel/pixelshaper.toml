@@ -2,7 +2,7 @@
 file = "fonts/NotoSansMalayalam-Regular.ttf"
 
 [output]
-family = "NotoMalayalamPixel"
+family = "NotoSansMalayalamPixel"
 ppem = 9          # pinned from trace's suggestion; keeps the grid stable
 threshold = 0.45
 

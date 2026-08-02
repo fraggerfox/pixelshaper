@@ -19,7 +19,7 @@ Copyright 2022 The Noto Project Authors (https://github.com/notofonts/malayalam)
 ```
 
 No "with Reserved Font Name …" clause → you may use the donor's name in
-your family (`NotoMalayalamPixel`). If an RFN *is* declared, pick a name
+your family (`NotoSansMalayalamPixel`). If an RFN *is* declared, pick a name
 that doesn't contain it. Keep the donor's `OFL.txt` in `fonts/` — the
 derivative stays OFL 1.1 and the copyright travels with it.
 
@@ -41,7 +41,7 @@ noto-malayalam-pixel/
 file = "fonts/NotoSansMalayalam-Regular.ttf"
 
 [output]
-family = "NotoMalayalamPixel"
+family = "NotoSansMalayalamPixel"
 threshold = 0.35
 
 [display]
@@ -130,7 +130,7 @@ never what you want).
 
 ```
 $ pixelshaper -C examples/noto-malayalam-pixel status
-project: noto-malayalam-pixel  donor: NotoSansMalayalam-Regular.ttf  family: NotoMalayalamPixel  ppem: 9
+project: noto-malayalam-pixel  donor: NotoSansMalayalam-Regular.ttf  family: NotoSansMalayalamPixel  ppem: 9
 corpus entries: 6  glyphs needed: 60
 traced: 60/60
 hand-edited: 0
@@ -145,7 +145,7 @@ tuning it reconstructs your ledger exactly (the Manjari example reports
 
 ```
 $ pixelshaper -C examples/noto-malayalam-pixel build
-60 glyphs pixelized at 9ppem (1px = 111.1 units) -> build/NotoMalayalamPixel.ttf
+60 glyphs pixelized at 9ppem (1px = 111.1 units) -> build/NotoSansMalayalamPixel.ttf
 ```
 
 The donor is copied; only the outlines of your traced glyphs are replaced
@@ -153,7 +153,7 @@ with pixel squares (1 px = upem/ppem units). Advances and every GPOS
 coordinate are quantized to the grid — without that, pixel-aligned bases
 would still get fractionally-placed vowel signs. `cmap`/GSUB/GPOS pass
 through otherwise untouched, and the native size is stamped into the
-unique-ID name record (`NotoMalayalamPixel-9px;derived-from-Noto Sans
+unique-ID name record (`NotoSansMalayalamPixel-9px;derived-from-Noto Sans
 Malayalam`) so downstream renderers can discover it.
 
 ## Step 5 — render
@@ -161,7 +161,7 @@ Malayalam`) so downstream renderers can discover it.
 ```
 $ pixelshaper -C examples/noto-malayalam-pixel render മലയാളം
 
-=== മലയാളം  (42x11)  -> notomalayalampixel-0b10e86f.png ===
+=== മലയാളം  (42x11)  -> notosansmalayalampixel-0b10e86f.png ===
 ··········································
 ··········································
 ···●●●●··●●●··●··●●●●●··●·●●●··●●●●●······

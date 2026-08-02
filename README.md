@@ -136,7 +136,7 @@ Copies the donor, replaces the outlines of every glyph in `glyphs/` with
 pixel squares (1 px = upem/ppem units), quantizes advances and all GPOS
 coordinates to the grid, renames the family, and stamps the native size
 into name-table ID 3 (`ManjariPixel-14px;derived-from-Manjari`). Nothing
-else changes — which is why NotoMalayalamPixel and MuktaPixel shape
+else changes — which is why NotoSansMalayalamPixel and MuktaPixel shape
 identically to their donors.
 
 ### `pixelshaper render [TEXTS...] [--gap N] [--shared]`

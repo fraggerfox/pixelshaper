@@ -8,8 +8,8 @@ hardware (an 11-row [FOSSASIA LED badge](https://badgemagic.fossasia.org/)):
 |---|---|---|---|---|---|
 | `manjari-pixel/` | Manjari Regular (SMC) | ManjariPixel | 14 | <img src="../pics/manjari-pixel.jpg" width="260" alt="ManjariPixel on the LED badge"> | Geometric, compact — largest em on 11 rows |
 | `nupuram-pixel/` | Nupuram Dots (SMC) | NupuramPixel | 12 | <img src="../pics/nupuram-pixel.jpg" width="260" alt="NupuramPixel on the LED badge"> | Round, dotted design; the original experiment |
-| `noto-malayalam-pixel/` | Noto Sans Malayalam (Google) | NotoMalayalamPixel | 9 | <img src="../pics/noto-sans-malaylam-pixel.jpg" width="260" alt="NotoMalayalamPixel on the LED badge"> | The USAGE.md walkthrough project; 40 hand-tuned glyphs |
-| `mukta-devanagari-pixel/` | Mukta Regular (Ek Type) | MuktaPixel | 9 | <img src="../pics/mukta-devanagari-pixel.jpg" width="260" alt="MuktaPixel (Devanagari) on the LED badge"> | Devanagari — first non-Malayalam script; auto-trace only |
+| `noto-malayalam-pixel/` | Noto Sans Malayalam (Google) | NotoSansMalayalamPixel | 9 | <img src="../pics/noto-sans-malaylam-pixel.jpg" width="260" alt="NotoSansMalayalamPixel on the LED badge"> | The USAGE.md walkthrough project; 40 hand-tuned glyphs. At 9 ppem it does not use the full 11 px height — words render centred with blank rows |
+| `mukta-devanagari-pixel/` | Mukta Regular (Ek Type) | MuktaPixel | 9 | <img src="../pics/mukta-devanagari-pixel.jpg" width="260" alt="MuktaPixel (Devanagari) on the LED badge"> | Devanagari — first non-Malayalam script; auto-trace only. Like Noto, its 9 ppem em does not fill the 11 px height |
 
 Run from the repo root:
 
@@ -35,6 +35,13 @@ conjuncts (क्ष त्र ज्ञ श्र द्ध द्य क्त
 ```sh
 uv run pixelshaper -C examples/mukta-devanagari-pixel render "नमस्ते"
 ```
+
+Note on size: both 9 ppem fonts (this and Noto) are pinned at their
+corpus-driven suggestion, so ordinary words span ~8–9 rows and render
+vertically centred rather than filling the 11 px strip. Filling the
+height would mean pinning a larger ppem and hand-compressing the
+overflowing marks — the treatment ManjariPixel got (pinned 14 against a
+suggestion of 10).
 
 Script-specific behaviour, all inherited from Mukta's own GSUB/GPOS:
 the **shirorekha** (headline) renders as one continuous lit row with
