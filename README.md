@@ -42,19 +42,20 @@ glyph *outlines* with pixel squares:
     "edgeLabelBackground": "#24241c",
     "fontFamily": "ui-monospace, monospace",
     "fontSize": "14px"
-  }
+  },
+  "flowchart": { "nodeSpacing": 60, "rankSpacing": 75 }
 }}%%
 flowchart TD
     donor(["donor.ttf<br/><i>cmap / GSUB / GPOS</i>"])
     inventory(["glyph inventory<br/><i>every conjunct, ligature and mark<br/>the corpus actually uses</i>"])
-    art(["glyphs/&lt;name&gt;.txt<br/><b>●/· text-art grids</b><br/><i>the source of truth</i>"])
+    art(["glyphs/&lt;name&gt;.txt<br/><b>●/· text-art grids — the source of truth</b><br/><i>⟳ hand-edit · rebuild · judge on hardware</i>"])
     ttf(["build/Family.ttf<br/><i>shapes identically to the donor;<br/>pixel-perfect at its native ppem (stamped)</i>"])
 
-    donor -- "shape corpus (HarfBuzz)" --> inventory
-    inventory -- "rasterize + threshold<br/>at one ppem" --> art
-    art -- "pixel-square outlines;<br/>quantize metrics + GPOS anchors" --> ttf
-    donor -. "shaping tables pass through verbatim" .-> ttf
-    art -- "hand-edit loop" --> art
+    donor -- "<span style='display:inline-block;border:1px solid #8a6b2f;border-radius:4px;padding:1px 6px;background:#24241c'>shape corpus (HarfBuzz)</span>" --> inventory
+    inventory -- "<span style='display:inline-block;border:1px solid #8a6b2f;border-radius:4px;padding:1px 6px;background:#24241c'>rasterize + threshold<br/>at one ppem</span>" --> art
+    art -- "<span style='display:inline-block;border:1px solid #8a6b2f;border-radius:4px;padding:1px 6px;background:#24241c'>pixel-square outlines;<br/>quantize to<br/>the grid</span>" --> ttf
+    donor -. "<span style='display:inline-block;border:1px solid #8a6b2f;border-radius:4px;padding:1px 6px;background:#24241c'>shaping tables pass through verbatim</span>" .-> ttf
+    art -- "<span style='display:inline-block;border:1px solid #8a6b2f;border-radius:4px;padding:1px 6px;background:#24241c'>⟳ hand-edit</span>" --> art
 
     classDef stage fill:#1c1c24,stroke:#8a6b2f,color:#e6e6ea,stroke-width:1.5px
     classDef truth fill:#2a2113,stroke:#ffb000,color:#ffd977,stroke-width:2.5px
