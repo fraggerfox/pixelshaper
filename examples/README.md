@@ -1,13 +1,14 @@
 # Examples
 
-Two Malayalam pixel-font projects, vendored as snapshots of the parent
-repositories where they were developed glyph by glyph against real
+Malayalam pixel-font projects. The first two are vendored snapshots of
+the parent repositories where they were developed glyph by glyph against real
 hardware (an 11-row FOSSASIA LED badge):
 
 | Example | Donor | Family | ppem | Notes |
 |---|---|---|---|---|
 | `manjari-pixel/` | Manjari Regular (SMC) | ManjariPixel | 14 | Geometric, compact — largest em on 11 rows |
 | `nupuram-pixel/` | Nupuram Dots (SMC) | NupuramPixel | 12 | Round, dotted design; the original experiment |
+| `noto-malayalam-pixel/` | Noto Sans Malayalam (Google) | NotoMalayalamPixel | 9 | The USAGE.md walkthrough project; auto-trace only, no hand-tuning yet |
 
 Run from the repo root:
 

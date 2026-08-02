@@ -1,0 +1,9 @@
+# The corpus IS the coverage spec: every line is shaped with the donor,
+# and whatever glyphs come out are what gets traced. Extend it any time;
+# re-running trace fills only the gaps (hand-edits are never overwritten).
+അ ആ ഇ ഈ ഉ ഊ ഋ എ ഏ ഐ ഒ ഓ ഔ അം അഃ ക ഖ ഗ ഘ ങ ച ഛ ജ ഝ ഞ ട ഠ ഡ ഢ ണ ത ഥ ദ ധ ന പ ഫ ബ ഭ മ യ ര ല വ ശ ഷ സ ഹ ള ഴ റ
+മലയാളം
+കേരളം
+സന്തോഷ്
+വ്യക്തി
+തിരുവനന്തപുരം

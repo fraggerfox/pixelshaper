@@ -1,0 +1,12 @@
+name: aavowelsignmlym
+advance: 5
+left: 0
+top: 6
+
+·····
+·●●●·
+●··●·
+···●·
+●··●·
+●●●●·
+·····

@@ -56,14 +56,22 @@ Grown out of rendering Malayalam on an 11-row FOSSASIA LED name badge.
 The two parent projects remain the working reference implementations and
 will become this repo's example projects:
 
-- [manjari-pixel] — ManjaPixel, 14 ppem, from Manjari (SMC)
-- [nupuram-pixel] — MalaPixel, 12 ppem, from Nupuram (SMC)
+- [manjari-pixel] — ManjariPixel, 14 ppem, from Manjari (SMC)
+- [nupuram-pixel] — NupuramPixel, 12 ppem, from Nupuram (SMC)
 
-Derived fonts are licensed under the SIL OFL 1.1 with renamed families
-(donor names are Reserved Font Names).
+Derived fonts are licensed under the SIL OFL 1.1. Check each donor's OFL
+for Reserved Font Names before naming a family — Manjari, Nupuram and
+Noto Sans Malayalam declare none, so donor-based names are used.
 
 [manjari-pixel]: ../manjari-pixel/
 [nupuram-pixel]: ../nupuram-pixel/
+
+## Usage
+
+See **[USAGE.md](USAGE.md)** for the full conversion walkthrough — from
+license check through trace/build/render to the hand-edit loop — using
+the Noto Sans Malayalam example. Working projects live in
+[examples/](examples/).
 
 ## Development
 

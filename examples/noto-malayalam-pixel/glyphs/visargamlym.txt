@@ -1,0 +1,12 @@
+name: visargamlym
+advance: 3
+left: 0
+top: 6
+
+···
+●●●
+●●●
+·●·
+●●●
+●●●
+···

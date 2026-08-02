@@ -1,0 +1,13 @@
+name: ivowelsignmlym
+advance: 2
+left: -2
+top: 8
+
+·●●·
+●·●·
+··●●
+··●●
+··●●
+··●●
+··●●
+··●●

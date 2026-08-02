@@ -1,0 +1,10 @@
+[donor]
+file = "fonts/NotoSansMalayalam-Regular.ttf"
+
+[output]
+family = "NotoMalayalamPixel"
+ppem = 9          # pinned from trace's suggestion; keeps the grid stable
+threshold = 0.35
+
+[display]
+strip_height = 11

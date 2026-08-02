@@ -1,0 +1,8 @@
+name: viramamlym
+advance: 0
+left: -3
+top: 8
+
+····
+●··●
+·●●·

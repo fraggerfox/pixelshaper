@@ -1,0 +1,10 @@
+name: anusvaramlym
+advance: 4
+left: 0
+top: 4
+
+····
+●●●●
+●··●
+●●●●
+····
