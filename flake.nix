@@ -35,6 +35,9 @@
             source .venv/bin/activate
             echo "pixelshaper dev shell"
             echo "  pixelshaper -C <project> {trace,build,render,status}"
+            echo "  uv run pytest                       # tests + coverage table"
+            echo "  uv run pytest --cov-report=html     # then open htmlcov/index.html"
+            echo "  uv run coverage report              # re-print last run's coverage"
             echo "  (after editing pyproject.toml, run 'uv sync' or use 'uv run')"
           '';
         };

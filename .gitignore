@@ -6,6 +6,11 @@ __pycache__/
 # Build artifacts
 build/
 
+# Test/coverage artifacts
+.coverage
+htmlcov/
+.pytest_cache/
+
 # Nix
 .direnv/
 result
