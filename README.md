@@ -54,7 +54,7 @@ flowchart TD
     inventory -- "rasterize + threshold<br/>at one ppem" --> art
     art -- "pixel-square outlines;<br/>quantize metrics + GPOS anchors" --> ttf
     donor -. "shaping tables pass through verbatim" .-> ttf
-    art -- "hand-edit, recompile,<br/>judge on hardware" --> art
+    art -- "hand-edit loop" --> art
 
     classDef stage fill:#1c1c24,stroke:#8a6b2f,color:#e6e6ea,stroke-width:1.5px
     classDef truth fill:#2a2113,stroke:#ffb000,color:#ffd977,stroke-width:2.5px
