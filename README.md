@@ -118,6 +118,12 @@ is exact by construction), prints the ●/· grid, and writes a
 `strip_height`-tall white-on-black PNG to `build/`, ready for e.g.
 `lednamebadge.py`. With no TEXTS it renders the whole corpus.
 
+Each PNG is named `<family>-<hash>.png` (lowercased family + first 8 hex
+chars of the text's MD5, e.g. `manjaripixel-18391f6f.png`), so the same
+text always maps to the same file and different texts never collide. The
+exact filename is printed in the `=== text (WxH) -> file ===` line above
+each grid.
+
 - default placement: each whitespace token gets its own baseline —
   സന്തോഷ് (tall marks) and മലയാളം (deep tails) each use the full strip;
 - `--gap N`: blank columns between tokens (8–10 reads well scrolling);
