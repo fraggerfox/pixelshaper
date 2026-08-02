@@ -11,7 +11,6 @@ from pathlib import Path
 
 ON, OFF = "●", "·"
 _HEADER_RE = re.compile(r"^(\w+):\s*(.*)$")
-_LEGACY_RE = re.compile(r"^\d{4}_.*\.txt$")  # gid-keyed files from the parents
 
 
 @dataclass
@@ -95,6 +94,3 @@ def load_dir(glyph_dir: Path) -> dict[str, GlyphArt]:
         arts[art.name] = art
     return arts
 
-
-def legacy_files(glyph_dir: Path) -> list[Path]:
-    return [p for p in sorted(glyph_dir.glob("*.txt")) if _LEGACY_RE.match(p.name)]

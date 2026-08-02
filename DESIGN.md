@@ -45,7 +45,8 @@ pixelshaper status   # coverage report: corpus vs traced vs hand-edited
 ```
 
 (Current equivalents: pixelize.py / compile_font.py / verify_render.py;
-`status` is new.)
+`status` is new. A `migrate` subcommand converted the parents' gid-keyed
+glyph files to name keys; it was removed once all projects had migrated.)
 
 The CLI is a thin layer over a **modular library**: each stage lives in
 its own module (`pixelshaper.trace`, `.build`, `.render`, `.status`,
@@ -91,8 +92,8 @@ Replaces today's meta.json + in-script constants + remembered CLI flags
 
 Today's `NNNN_name.txt` keys on glyph index; donor updates renumber gids
 and would orphan hand-edits. v1 keys on glyph name (`ml_lla.txt`,
-`k1th1.txt`), resolving gid at build time. Migration script renames the
-existing files.
+`k1th1.txt`), resolving gid at build time. (The one-time migration of the
+parents' files is done and the migration code has been removed.)
 
 ### Carried over unchanged (proven in the parents)
 
@@ -110,7 +111,7 @@ existing files.
 
 **T1 — packaging + config (the bulk, mostly mechanical)**
 pyproject console-script; subcommands; toml config; corpus file;
-name-keyed glyphs + migration; `status` subcommand.
+name-keyed glyphs; `status` subcommand.
 
 **T2 — donor robustness**
 Variable-font instancing (fontTools instancer); CFF/OTF donors via

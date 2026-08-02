@@ -195,9 +195,3 @@ Add lines to `corpus.txt`, run `trace` again (same pinned ppem!), and
 only the newly needed glyphs are traced; every hand-edit survives. New
 conjuncts that arrive too tall announce themselves as clipping warnings
 at render time.
-
-## Migrating a pre-pixelshaper project
-
-Projects from the original scripts used gid-keyed filenames
-(`0476_z1z1.txt`). `pixelshaper migrate` renames them to name keys and
-drops the gid header; run it once, before the first `build`.

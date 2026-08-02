@@ -33,7 +33,7 @@
             uv sync 2>/dev/null || true
             source .venv/bin/activate
             echo "pixelshaper dev shell"
-            echo "  pixelshaper -C <project> {trace,build,render,status,migrate}"
+            echo "  pixelshaper -C <project> {trace,build,render,status}"
             echo "  (after editing pyproject.toml, run 'uv sync' or use 'uv run')"
           '';
         };

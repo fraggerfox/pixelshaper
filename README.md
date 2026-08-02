@@ -132,14 +132,6 @@ corollary: changing `ppem`/`threshold` after tracing makes *everything*
 report as edited, because the auto-trace baseline moved — pin your
 config.
 
-### `pixelshaper migrate`
-
-One-time upgrade for projects from the pre-pixelshaper scripts: renames
-gid-keyed `0476_z1z1.txt` files to stable name keys (`z1z1.txt`) and
-drops the gid header. Names survive donor updates; gids don't. Both
-Malayalam examples went through this — git tracks the renames, so
-per-glyph history is preserved.
-
 ## Development
 
 ```sh

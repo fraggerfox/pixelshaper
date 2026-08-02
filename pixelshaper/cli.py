@@ -6,7 +6,7 @@ import sys
 from . import __version__, config
 from .build import build
 from .render import render_cli
-from .status import migrate, status
+from .status import status
 from .trace import trace
 
 
@@ -34,7 +34,6 @@ def main(argv=None) -> int:
                    help="one shared baseline for the whole string")
 
     sub.add_parser("status", help="coverage report: needed/traced/hand-edited")
-    sub.add_parser("migrate", help="rename gid-keyed glyph files to name-keyed")
 
     args = ap.parse_args(argv)
     try:
@@ -53,8 +52,6 @@ def main(argv=None) -> int:
                        gap=args.gap, shared=args.shared)
         elif args.command == "status":
             status(project)
-        elif args.command == "migrate":
-            migrate(project)
     except (FileNotFoundError, ValueError, KeyError, NotImplementedError) as e:
         print(f"pixelshaper {args.command}: {e}", file=sys.stderr)
         return 1

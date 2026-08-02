@@ -15,8 +15,8 @@ pixelshaper/          the library (CLI = thin wrapper, keep it that way)
   trace.py            donor+corpus -> glyphs/*.txt (skip-existing)
   build.py            glyphs/ -> build/<Family>.ttf
   render.py           native-ppem 1-bit render -> terminal + PNG
-  status.py           coverage report + migrate (gid->name keys)
-  cli.py              pixelshaper -C <project> {trace,build,render,status,migrate}
+  status.py           coverage report (hand-edit detection)
+  cli.py              pixelshaper -C <project> {trace,build,render,status}
 examples/             manjari-pixel (54 hand-edits), nupuram-pixel,
                       noto-malayalam-pixel (raw auto-trace, USAGE subject)
 ```

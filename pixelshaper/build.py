@@ -72,12 +72,6 @@ def build(project: Project, log=print) -> dict:
     arts = glyphart.load_dir(project.glyph_dir)
     if not arts:
         raise FileNotFoundError(f"no glyph files in {project.glyph_dir}; run trace first")
-    legacy = glyphart.legacy_files(project.glyph_dir)
-    if legacy:
-        raise ValueError(
-            f"{len(legacy)} gid-keyed glyph files (e.g. {legacy[0].name}) in "
-            f"{project.glyph_dir}; run `pixelshaper migrate` first")
-
     glyf, hmtx = font["glyf"], font["hmtx"]
     glyph_set = font.getGlyphSet()
     known = set(font.getGlyphOrder())
