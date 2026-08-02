@@ -84,7 +84,39 @@ Three things happened:
    stacks and hand-compress them later), or pinning higher and accepting
    clipping warnings as your hand-tuning worklist.
 3. Each glyph became `glyphs/<name>.txt` — files keyed by stable glyph
-   *name*, so donor updates can't orphan your edits.
+   *name*, so donor updates can't orphan your edits. Two freshly traced
+   examples — the letter അ and the tiny anusvara ം:
+
+   > ```
+   > name: amlym
+   > advance: 13
+   > left: 0
+   > top: 6
+   >
+   > ··············
+   > ·●●●●●●●●●●●··
+   > ●●·●·●·●●·●●●·
+   > ●··●·●··●·●·●·
+   > ●··●·●··●●··●·
+   > ·●·●●●··●·●●●·
+   > ··············
+   > ```
+
+   > ```
+   > name: anusvaramlym
+   > advance: 4
+   > left: 0
+   > top: 4
+   >
+   > ····
+   > ●●●●
+   > ●··●
+   > ·●●●
+   > ····
+   > ```
+
+   These are exactly what you'll hand-edit in Step 6 — the ●/· grid is
+   the glyph, the header is its metrics.
 
 **Pin the ppem now** in `pixelshaper.toml` (`ppem = 9`). Future corpus
 extensions must trace on the same grid; unpinned re-traces after a corpus
