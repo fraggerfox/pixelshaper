@@ -3,6 +3,12 @@
 **Shaping-aware pixel fonts** — derive hand-tunable pixel fonts from any
 OpenType donor, GSUB/GPOS intact.
 
+![Malayalam rendered by ManjariPixel scrolling on an 11-row LED name badge](pics/led-badge-malaylam.jpg)
+
+*Malayalam on an 11-row FOSSASIA LED name badge, rendered with
+ManjariPixel — a pixel font derived from [Manjari](https://smc.org.in/fonts/manjari)
+with its OpenType shaping intact.*
+
 > Status: **design phase.** The pipeline exists and is proven in two
 > single-font projects — [manjari-pixel] and [nupuram-pixel], both Malayalam —
 > which this project generalizes. See [DESIGN.md](DESIGN.md) for the plan.
