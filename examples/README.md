@@ -2,7 +2,7 @@
 
 Pixel-font projects. The first two are vendored snapshots of
 the parent repositories where they were developed glyph by glyph against real
-hardware (an 11-row FOSSASIA LED badge):
+hardware (an 11-row [FOSSASIA LED badge](https://badgemagic.fossasia.org/)):
 
 | Example | Donor | Family | ppem | Notes |
 |---|---|---|---|---|

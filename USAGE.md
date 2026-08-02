@@ -178,8 +178,10 @@ $ pixelshaper -C examples/noto-malayalam-pixel render മലയാളം
 Rendering is **1-bit mono at the native ppem** — a correct pixel font
 needs no anti-aliasing or thresholds; what you see is exactly what a
 1-bit display shows. The PNG (strip_height rows, white-on-black) is ready
-for whatever consumes your display — for an LED badge,
-`lednamebadge.py -s 4 -m 0 build/<render>.png`.
+for whatever consumes your display — for a
+[FOSSASIA LED badge](https://badgemagic.fossasia.org/):
+[`lednamebadge.py`](https://github.com/fossasia/led-name-badge-ls32)
+`-s 4 -m 0 build/<render>.png`.
 
 Placement modes:
 

@@ -5,7 +5,7 @@ OpenType donor, GSUB/GPOS intact.
 
 ![Malayalam rendered by ManjariPixel scrolling on an 11-row LED name badge](pics/led-badge-malaylam.jpg)
 
-*Malayalam on an 11-row FOSSASIA LED name badge, rendered with
+*Malayalam on an 11-row [FOSSASIA LED name badge](https://badgemagic.fossasia.org/), rendered with
 ManjariPixel — a pixel font derived from [Manjari](https://smc.org.in/fonts/manjari)
 with its OpenType shaping intact.*
 
@@ -58,7 +58,7 @@ never had — performed once, at the one size that matters, and baked in.
 
 ## Provenance
 
-Grown out of rendering Malayalam on an 11-row FOSSASIA LED name badge.
+Grown out of rendering Malayalam on an 11-row [FOSSASIA LED name badge](https://badgemagic.fossasia.org/).
 The two parent projects remain the working reference implementations and
 will become this repo's example projects:
 
@@ -116,7 +116,9 @@ identically to their donors.
 Renders at the native ppem in 1-bit mono (no thresholds — a pixel font
 is exact by construction), prints the ●/· grid, and writes a
 `strip_height`-tall white-on-black PNG to `build/`, ready for e.g.
-`lednamebadge.py`. With no TEXTS it renders the whole corpus.
+[`lednamebadge.py`](https://github.com/fossasia/led-name-badge-ls32) (the Python
+tool that writes images to the badge over USB). With no TEXTS it renders
+the whole corpus.
 
 Each PNG is named `<family>-<hash>.png` (lowercased family + first 8 hex
 chars of the text's MD5, e.g. `manjaripixel-18391f6f.png`), so the same
