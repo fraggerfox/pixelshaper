@@ -8,7 +8,7 @@ hardware (an 11-row [FOSSASIA LED badge](https://badgemagic.fossasia.org/)):
 |---|---|---|---|---|
 | `manjari-pixel/` | Manjari Regular (SMC) | ManjariPixel | 14 | Geometric, compact — largest em on 11 rows |
 | `nupuram-pixel/` | Nupuram Dots (SMC) | NupuramPixel | 12 | Round, dotted design; the original experiment |
-| `noto-malayalam-pixel/` | Noto Sans Malayalam (Google) | NotoMalayalamPixel | 9 | The USAGE.md walkthrough project; auto-trace only, no hand-tuning yet |
+| `noto-malayalam-pixel/` | Noto Sans Malayalam (Google) | NotoMalayalamPixel | 9 | The USAGE.md walkthrough project; 40 hand-tuned glyphs |
 | `mukta-devanagari-pixel/` | Mukta Regular (Ek Type) | MuktaPixel | 9 | Devanagari — first non-Malayalam script; auto-trace only |
 
 Run from the repo root:
