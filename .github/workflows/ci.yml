@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      # ruff comes via uvx here (plain Linux runners take the pip wheel
+      # fine; only the NixOS dev shell needs it from nixpkgs). Its config
+      # lives in pyproject.toml either way.
+      - name: ruff
+        run: uvx ruff check pixelshaper/ tests/
+      - name: black
+        run: |
+          uv sync
+          uv run black --check pixelshaper/ tests/
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync
+      - name: pytest with coverage
+        run: |
+          set -o pipefail
+          uv run pytest --cov-report=term-missing --cov-report=html --cov-report=xml | tee pytest.log
+      - name: coverage summary
+        if: always()
+        run: |
+          {
+            echo '## Coverage'
+            echo '```'
+            grep -E 'Name|^-+$|\.py |TOTAL|passed|failed' pytest.log || true
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+      - name: upload coverage report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: |
+            htmlcov/
+            coverage.xml
