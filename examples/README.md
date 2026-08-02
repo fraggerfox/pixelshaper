@@ -4,12 +4,12 @@ Pixel-font projects. The first two are vendored snapshots of
 the parent repositories where they were developed glyph by glyph against real
 hardware (an 11-row [FOSSASIA LED badge](https://badgemagic.fossasia.org/)):
 
-| Example | Donor | Family | ppem | Notes |
-|---|---|---|---|---|
-| `manjari-pixel/` | Manjari Regular (SMC) | ManjariPixel | 14 | Geometric, compact — largest em on 11 rows |
-| `nupuram-pixel/` | Nupuram Dots (SMC) | NupuramPixel | 12 | Round, dotted design; the original experiment |
-| `noto-malayalam-pixel/` | Noto Sans Malayalam (Google) | NotoMalayalamPixel | 9 | The USAGE.md walkthrough project; 40 hand-tuned glyphs |
-| `mukta-devanagari-pixel/` | Mukta Regular (Ek Type) | MuktaPixel | 9 | Devanagari — first non-Malayalam script; auto-trace only |
+| Example | Donor | Family | ppem | On the badge | Notes |
+|---|---|---|---|---|---|
+| `manjari-pixel/` | Manjari Regular (SMC) | ManjariPixel | 14 | <img src="../pics/manjari-pixel.jpg" width="260" alt="ManjariPixel on the LED badge"> | Geometric, compact — largest em on 11 rows |
+| `nupuram-pixel/` | Nupuram Dots (SMC) | NupuramPixel | 12 | <img src="../pics/nupuram-pixel.jpg" width="260" alt="NupuramPixel on the LED badge"> | Round, dotted design; the original experiment |
+| `noto-malayalam-pixel/` | Noto Sans Malayalam (Google) | NotoMalayalamPixel | 9 | <img src="../pics/noto-sans-malaylam-pixel.jpg" width="260" alt="NotoMalayalamPixel on the LED badge"> | The USAGE.md walkthrough project; 40 hand-tuned glyphs |
+| `mukta-devanagari-pixel/` | Mukta Regular (Ek Type) | MuktaPixel | 9 | <img src="../pics/mukta-devanagari-pixel.jpg" width="260" alt="MuktaPixel (Devanagari) on the LED badge"> | Devanagari — first non-Malayalam script; auto-trace only |
 
 Run from the repo root:
 
