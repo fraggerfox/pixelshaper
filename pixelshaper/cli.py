@@ -16,22 +16,32 @@ def main(argv=None) -> int:
         description="Shaping-aware pixel fonts from OpenType donors",
     )
     ap.add_argument("--version", action="version", version=f"pixelshaper {__version__}")
-    ap.add_argument("-C", "--project", default=".", metavar="DIR",
-                    help="project directory containing pixelshaper.toml (default: .)")
+    ap.add_argument(
+        "-C",
+        "--project",
+        default=".",
+        metavar="DIR",
+        help="project directory containing pixelshaper.toml (default: .)",
+    )
     sub = ap.add_subparsers(dest="command", required=True)
 
     p = sub.add_parser("trace", help="donor + corpus -> glyphs/<name>.txt")
-    p.add_argument("--force", action="store_true",
-                   help="overwrite existing glyph files (DESTROYS hand-edits)")
+    p.add_argument(
+        "--force",
+        action="store_true",
+        help="overwrite existing glyph files (DESTROYS hand-edits)",
+    )
 
     sub.add_parser("build", help="glyphs/ -> build/<Family>.ttf")
 
     p = sub.add_parser("render", help="render text at the native ppem")
     p.add_argument("texts", nargs="*", help="texts to render (default: the corpus)")
-    p.add_argument("--gap", type=int, default=3,
-                   help="blank columns between words (default 3)")
-    p.add_argument("--shared", action="store_true",
-                   help="one shared baseline for the whole string")
+    p.add_argument(
+        "--gap", type=int, default=3, help="blank columns between words (default 3)"
+    )
+    p.add_argument(
+        "--shared", action="store_true", help="one shared baseline for the whole string"
+    )
 
     sub.add_parser("status", help="coverage report: needed/traced/hand-edited")
 
@@ -48,8 +58,9 @@ def main(argv=None) -> int:
         elif args.command == "build":
             build(project)
         elif args.command == "render":
-            render_cli(project, args.texts or project.corpus,
-                       gap=args.gap, shared=args.shared)
+            render_cli(
+                project, args.texts or project.corpus, gap=args.gap, shared=args.shared
+            )
         elif args.command == "status":
             status(project)
     except (FileNotFoundError, ValueError, KeyError, NotImplementedError) as e:

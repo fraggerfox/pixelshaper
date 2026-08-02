@@ -8,21 +8,27 @@ unique-ID name record. Rendering at exactly `ppem` px reproduces the
 text-art dot for dot.
 """
 
-from fontTools.ttLib import TTFont
 from fontTools.pens.ttGlyphPen import TTGlyphPen
+from fontTools.ttLib import TTFont
 
 from . import glyphart
 from .config import Project
 from .donor import Donor
 
-_POS_ATTRS = ("XCoordinate", "YCoordinate", "XPlacement",
-              "YPlacement", "XAdvance", "YAdvance")
+_POS_ATTRS = (
+    "XCoordinate",
+    "YCoordinate",
+    "XPlacement",
+    "YPlacement",
+    "XAdvance",
+    "YAdvance",
+)
 
 
 def _rects(art: glyphart.GlyphArt):
     """Merge horizontal runs of on-pixels into rectangles (px, y up)."""
     for r, row in enumerate(art.rows):
-        y1 = art.top - r          # top edge of this pixel row
+        y1 = art.top - r  # top edge of this pixel row
         c = 0
         while c < len(row):
             if row[c] == glyphart.ON:
@@ -71,14 +77,18 @@ def build(project: Project, log=print) -> dict:
 
     arts = glyphart.load_dir(project.glyph_dir)
     if not arts:
-        raise FileNotFoundError(f"no glyph files in {project.glyph_dir}; run trace first")
+        raise FileNotFoundError(
+            f"no glyph files in {project.glyph_dir}; run trace first"
+        )
     glyf, hmtx = font["glyf"], font["hmtx"]
     glyph_set = font.getGlyphSet()
     known = set(font.getGlyphOrder())
     for name, art in arts.items():
         if name not in known:
-            raise KeyError(f"glyph {name!r} ({glyphart.path_for(project.glyph_dir, name).name}) "
-                           f"not in donor {project.donor.name}")
+            raise KeyError(
+                f"glyph {name!r} ({glyphart.path_for(project.glyph_dir, name).name}) "
+                f"not in donor {project.donor.name}"
+            )
         pen = TTGlyphPen(glyph_set)
         for x0, y0, x1, y1 in _rects(art):
             pen.moveTo((px(x0), px(y0)))
@@ -95,12 +105,19 @@ def build(project: Project, log=print) -> dict:
     family = project.family
     stamp = f"{family}-{project.ppem}px;derived-from-{donor.family_name}"
     name_tbl = font["name"]
-    for nid, val in ((1, family), (3, stamp), (4, f"{family} Regular"),
-                     (6, f"{family}-Regular"), (16, family)):
+    for nid, val in (
+        (1, family),
+        (3, stamp),
+        (4, f"{family} Regular"),
+        (6, f"{family}-Regular"),
+        (16, family),
+    ):
         name_tbl.setName(val, nid, 3, 1, 0x409)
 
     project.build_dir.mkdir(exist_ok=True)
     font.save(str(project.ttf_path))
-    log(f"{len(arts)} glyphs pixelized at {project.ppem}ppem "
-        f"(1px = {units_per_px:.1f} units) -> {project.ttf_path}")
+    log(
+        f"{len(arts)} glyphs pixelized at {project.ppem}ppem "
+        f"(1px = {units_per_px:.1f} units) -> {project.ttf_path}"
+    )
     return {"glyphs": len(arts), "ttf": project.ttf_path, "stamp": stamp}

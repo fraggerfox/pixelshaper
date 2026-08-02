@@ -25,21 +25,32 @@ def status(project: Project, log=print) -> dict:
         gray, adv, left, top = donor.raster(gid, ppem)
         fresh = glyphart.from_bitmap(name, adv, left, top, gray, project.threshold)
         cur = arts[name]
-        if ((cur.advance, cur.left, cur.top) != (fresh.advance, fresh.left, fresh.top)
-                or [r.rstrip(glyphart.OFF) for r in cur.rows if glyphart.ON in r]
-                != [r.rstrip(glyphart.OFF) for r in fresh.rows if glyphart.ON in r]):
+        if (cur.advance, cur.left, cur.top) != (
+            fresh.advance,
+            fresh.left,
+            fresh.top,
+        ) or [r.rstrip(glyphart.OFF) for r in cur.rows if glyphart.ON in r] != [
+            r.rstrip(glyphart.OFF) for r in fresh.rows if glyphart.ON in r
+        ]:
             edited.append(name)
 
-    log(f"project: {project.root.name}  donor: {project.donor.name}  "
-        f"family: {project.family}  ppem: {ppem}")
+    log(
+        f"project: {project.root.name}  donor: {project.donor.name}  "
+        f"family: {project.family}  ppem: {ppem}"
+    )
     log(f"corpus entries: {len(project.corpus)}  glyphs needed: {len(needed)}")
-    log(f"traced: {len(needed) - len(missing)}/{len(needed)}"
-        + (f"  MISSING: {', '.join(missing)}" if missing else ""))
+    log(
+        f"traced: {len(needed) - len(missing)}/{len(needed)}"
+        + (f"  MISSING: {', '.join(missing)}" if missing else "")
+    )
     log(f"hand-edited: {len(edited)}")
     for name in edited:
         log(f"  ~ {name}")
     if extra:
         log(f"not needed by current corpus ({len(extra)}): {', '.join(extra)}")
-    return {"needed": sorted(needed), "missing": missing,
-            "edited": edited, "extra": extra}
-
+    return {
+        "needed": sorted(needed),
+        "missing": missing,
+        "edited": edited,
+        "extra": extra,
+    }

@@ -13,11 +13,11 @@ class Project:
     root: Path
     donor: Path
     family: str
-    ppem: int | None          # None -> auto-suggest at trace time
+    ppem: int | None  # None -> auto-suggest at trace time
     threshold: float
     strip_height: int
     corpus: list[str] = field(default_factory=list)
-    instance: dict | None = None   # variable-font axis pins (T2)
+    instance: dict | None = None  # variable-font axis pins (T2)
 
     @property
     def glyph_dir(self) -> Path:

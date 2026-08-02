@@ -16,10 +16,10 @@ _HEADER_RE = re.compile(r"^(\w+):\s*(.*)$")
 @dataclass
 class GlyphArt:
     name: str
-    advance: int          # pen advance, px
-    left: int             # left side bearing, px
-    top: int              # top edge of the grid relative to baseline, px
-    rows: list[str]       # ●/· strings; may include leading/trailing blanks
+    advance: int  # pen advance, px
+    left: int  # left side bearing, px
+    top: int  # top edge of the grid relative to baseline, px
+    rows: list[str]  # ●/· strings; may include leading/trailing blanks
 
     @property
     def bits(self) -> list[list[bool]]:
@@ -93,4 +93,3 @@ def load_dir(glyph_dir: Path) -> dict[str, GlyphArt]:
         art = parse(p)
         arts[art.name] = art
     return arts
-

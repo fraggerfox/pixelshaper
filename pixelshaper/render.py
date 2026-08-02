@@ -8,6 +8,7 @@ where per-word centring would look wavy).
 """
 
 import hashlib
+from pathlib import Path
 
 import freetype
 import numpy as np
@@ -68,8 +69,11 @@ def _render_run(pf: _PixelFont, text: str, log=print):
     width = int(pf.ppem * max(1, len(text)) * 1.5) + 20
     panel = np.zeros((H, width), bool)
     pen_x = 2.0
-    flags = (freetype.FT_LOAD_RENDER | freetype.FT_LOAD_TARGET_MONO
-             | freetype.FT_LOAD_NO_HINTING)
+    flags = (
+        freetype.FT_LOAD_RENDER
+        | freetype.FT_LOAD_TARGET_MONO
+        | freetype.FT_LOAD_NO_HINTING
+    )
     for info, pos in zip(buf.glyph_infos, buf.glyph_positions):
         pf.ft.load_glyph(info.codepoint, flags)
         bm = pf.ft.glyph.bitmap
@@ -87,8 +91,9 @@ def _render_run(pf: _PixelFont, text: str, log=print):
     return panel[:, : inked.max() + 2] if len(inked) else panel[:, :1]
 
 
-def render_text(project: Project, text: str, gap: int = 3,
-                shared: bool = False, log=print) -> np.ndarray:
+def render_text(
+    project: Project, text: str, gap: int = 3, shared: bool = False, log=print
+) -> np.ndarray:
     pf = _PixelFont(project)
     if shared:
         return _render_run(pf, text, log)
@@ -99,7 +104,7 @@ def render_text(project: Project, text: str, gap: int = 3,
     return np.hstack(panels[:-1]) if panels else np.zeros((pf.strip_h, 1), bool)
 
 
-def save_png(project: Project, bits: np.ndarray, text: str) -> "Path":
+def save_png(project: Project, bits: np.ndarray, text: str) -> Path:
     project.build_dir.mkdir(exist_ok=True)
     digest = hashlib.md5(text.encode()).hexdigest()[:8]
     out = project.build_dir / f"{project.family.lower()}-{digest}.png"

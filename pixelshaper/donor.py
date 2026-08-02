@@ -1,10 +1,11 @@
 """Donor font access: fontTools (names/tables), FreeType (raster),
 HarfBuzz (shaping). One consistent naming source: fontTools glyph order."""
 
+from pathlib import Path
+
 import freetype
 import uharfbuzz as hb
 from fontTools.ttLib import TTFont
-from pathlib import Path
 
 
 class Donor:
