@@ -9,7 +9,7 @@ hardware (an 11-row [FOSSASIA LED badge](https://badgemagic.fossasia.org/)):
 | `manjari-pixel/` | Manjari Regular (SMC) | ManjariPixel | 14 | <img src="../pics/manjari-pixel.jpg" width="260" alt="ManjariPixel on the LED badge"> | Geometric, compact — largest em on 11 rows |
 | `nupuram-pixel/` | Nupuram Dots (SMC) | NupuramPixel | 12 | <img src="../pics/nupuram-pixel.jpg" width="260" alt="NupuramPixel on the LED badge"> | Round, dotted design; the original experiment |
 | `noto-sans-malayalam-pixel/` | Noto Sans Malayalam (Google) | NotoSansMalayalamPixel | 9 | <img src="../pics/noto-sans-malaylam-pixel.jpg" width="260" alt="NotoSansMalayalamPixel on the LED badge"> | The USAGE.md walkthrough project; 40 hand-tuned glyphs. At 9 ppem it does not use the full 11 px height — words render centred with blank rows |
-| `mukta-devanagari-pixel/` | Mukta Regular (Ek Type) | MuktaPixel | 9 | <img src="../pics/mukta-devanagari-pixel.jpg" width="260" alt="MuktaPixel (Devanagari) on the LED badge"> | Devanagari — first non-Malayalam script; auto-trace only. Like Noto, its 9 ppem em does not fill the 11 px height |
+| `mukta-pixel/` | Mukta Regular (Ek Type) | MuktaPixel | 9 | <img src="../pics/mukta-pixel.jpg" width="260" alt="MuktaPixel (Devanagari) on the LED badge"> | Devanagari — first non-Malayalam script; auto-trace only. Like Noto, its 9 ppem em does not fill the 11 px height |
 
 Run from the repo root:
 
@@ -24,7 +24,7 @@ compressed marks, redrawn conjunct stacks — `pixelshaper status` lists
 which glyphs differ from a fresh auto-trace). The living projects remain
 in their parent repositories; these snapshots track them loosely.
 
-## Devanagari: `mukta-devanagari-pixel/`
+## Devanagari: `mukta-pixel/`
 
 The example that proves the pipeline is script-agnostic: **zero code
 changes** were needed to go from Malayalam to Devanagari. 73 glyphs traced
@@ -33,7 +33,7 @@ conjuncts (क्ष त्र ज्ञ श्र द्ध द्य क्त
 प्रेम धर्म) and real words (नमस्ते, भारत, दिल्ली, मुंबई).
 
 ```sh
-uv run pixelshaper -C examples/mukta-devanagari-pixel render "नमस्ते"
+uv run pixelshaper -C examples/mukta-pixel render "नमस्ते"
 ```
 
 Note on size: both 9 ppem fonts (this and Noto) are pinned at their
