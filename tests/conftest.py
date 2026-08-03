@@ -22,9 +22,10 @@ def mini_project(tmp_path):
     (tmp_path / "pixelshaper.toml").write_text(
         '[donor]\nfile = "fonts/Manjari-Regular.ttf"\n\n'
         '[output]\nfamily = "TestPixel"\nppem = 14\nthreshold = 0.35\n\n'
-        "[display]\nstrip_height = 11\n"
+        "[display]\nstrip_height = 11\n",
+        encoding="utf-8",
     )
-    (tmp_path / "corpus.txt").write_text("ക\n")
+    (tmp_path / "corpus.txt").write_text("ക\n", encoding="utf-8")
     from pixelshaper import config
 
     return config.load(tmp_path)

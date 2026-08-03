@@ -23,14 +23,14 @@ def test_trace_skips_existing_and_force_overwrites(mini_project):
     assert path.exists()
 
     # simulate a hand-edit, retrace: the edit must survive
-    edited = path.read_text().replace("●", "·", 1)
-    path.write_text(edited)
+    edited = path.read_text(encoding="utf-8").replace("●", "·", 1)
+    path.write_text(edited, encoding="utf-8")
     trace(mini_project, log=quiet)
-    assert path.read_text() == edited
+    assert path.read_text(encoding="utf-8") == edited
 
     # --force regenerates
     trace(mini_project, force=True, log=quiet)
-    assert path.read_text() != edited
+    assert path.read_text(encoding="utf-8") != edited
 
 
 def test_build_stamps_and_renames(mini_project):

@@ -45,7 +45,7 @@ def path_for(glyph_dir: Path, name: str) -> Path:
 def parse(path: Path) -> GlyphArt:
     head: dict[str, str] = {}
     rows: list[str] = []
-    for line in path.read_text().splitlines():
+    for line in path.read_text(encoding="utf-8").splitlines():
         if not rows and (m := _HEADER_RE.match(line)):
             head[m.group(1)] = m.group(2).strip()
         elif line.strip():
@@ -71,7 +71,7 @@ def write(art: GlyphArt, glyph_dir: Path) -> Path:
         f"left: {art.left}",
         f"top: {art.top}",
     ]
-    out.write_text("\n".join(header + [""] + art.rows) + "\n")
+    out.write_text("\n".join(header + [""] + art.rows) + "\n", encoding="utf-8")
     return out
 
 

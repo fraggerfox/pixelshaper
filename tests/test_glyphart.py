@@ -20,7 +20,7 @@ def test_filename_sanitized_but_name_authoritative(tmp_path):
 
 def test_parse_missing_header_field(tmp_path):
     p = tmp_path / "bad.txt"
-    p.write_text("name: x\nadvance: 3\n\n●●\n")  # no left/top
+    p.write_text("name: x\nadvance: 3\n\n●●\n", encoding="utf-8")  # no left/top
     try:
         glyphart.parse(p)
         assert False, "expected ValueError"

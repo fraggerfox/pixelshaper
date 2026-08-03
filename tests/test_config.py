@@ -4,9 +4,9 @@ from pixelshaper import config
 
 
 def _write(tmp_path, toml, corpus=None):
-    (tmp_path / "pixelshaper.toml").write_text(toml)
+    (tmp_path / "pixelshaper.toml").write_text(toml, encoding="utf-8")
     if corpus is not None:
-        (tmp_path / "corpus.txt").write_text(corpus)
+        (tmp_path / "corpus.txt").write_text(corpus, encoding="utf-8")
     return tmp_path
 
 

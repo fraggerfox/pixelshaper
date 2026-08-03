@@ -37,7 +37,7 @@ def load(root: Path | str) -> Project:
     config_path = root / CONFIG_NAME
     if not config_path.is_file():
         raise FileNotFoundError(f"no {CONFIG_NAME} in {root}")
-    raw = tomllib.loads(config_path.read_text())
+    raw = tomllib.loads(config_path.read_text(encoding="utf-8"))
 
     donor_tbl = raw.get("donor", {})
     output = raw.get("output", {})
@@ -50,7 +50,7 @@ def load(root: Path | str) -> Project:
     corpus_path = root / CORPUS_NAME
     corpus = []
     if corpus_path.is_file():
-        for line in corpus_path.read_text().splitlines():
+        for line in corpus_path.read_text(encoding="utf-8").splitlines():
             line = line.strip()
             if line and not line.startswith("#"):
                 corpus.append(line)
