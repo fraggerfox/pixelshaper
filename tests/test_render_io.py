@@ -52,7 +52,10 @@ def test_clipping_warning_fires_when_ppem_exceeds_strip(mini_project):
     # Rebuild the same project at a deliberately oversized ppem: the letter
     # is now taller than the strip and the render must say so.
     toml = mini_project.root / "pixelshaper.toml"
-    toml.write_text(toml.read_text().replace("ppem = 14", "ppem = 30"))
+    toml.write_text(
+        toml.read_text(encoding="utf-8").replace("ppem = 14", "ppem = 30"),
+        encoding="utf-8",
+    )
     project = config.load(mini_project.root)
     trace(project, force=True, log=quiet)
     build(project, log=quiet)
