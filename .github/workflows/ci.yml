@@ -22,7 +22,15 @@ jobs:
           uv run black --check pixelshaper/ tests/
 
   test:
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        # the pipefail/grep steps below assume bash; Windows defaults to pwsh
+        shell: bash
     steps:
       - uses: actions/checkout@v7
       - uses: astral-sh/setup-uv@v9.0.0
@@ -35,7 +43,7 @@ jobs:
         if: always()
         run: |
           {
-            echo '## Coverage'
+            echo '## Coverage (${{ matrix.os }})'
             echo '```'
             grep -E 'Name|^-+$|\.py |TOTAL|passed|failed' pytest.log || true
             echo '```'
@@ -44,7 +52,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: coverage-report
+          name: coverage-report-${{ matrix.os }}
           path: |
             htmlcov/
             coverage.xml
