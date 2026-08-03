@@ -5,9 +5,25 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    pull-request-branch-name:
+      separator: '-'
+    groups:
+      stable-updates:
+        update-types:
+          - "major"
+          - "minor"
+          - "patch"
 
   # Python dependencies (pyproject.toml + uv.lock)
   - package-ecosystem: "uv"
     directory: "/"
     schedule:
       interval: "weekly"
+    pull-request-branch-name:
+      separator: '-'
+    groups:
+      stable-updates:
+        update-types:
+          - "major"
+          - "minor"
+          - "patch"
