@@ -5,6 +5,7 @@ import sys
 
 from . import __version__, config
 from .build import build
+from .ppem import report as ppem_report
 from .render import render_cli
 from .status import status
 from .trace import trace
@@ -45,6 +46,10 @@ def main(argv=None) -> int:
 
     sub.add_parser("status", help="coverage report: needed/traced/hand-edited")
 
+    sub.add_parser(
+        "ppem", help="sizing report: self-scale per corpus line, overflow table"
+    )
+
     args = ap.parse_args(argv)
     try:
         project = config.load(args.project)
@@ -63,6 +68,8 @@ def main(argv=None) -> int:
             )
         elif args.command == "status":
             status(project)
+        elif args.command == "ppem":
+            ppem_report(project)
     except (FileNotFoundError, ValueError, KeyError, NotImplementedError) as e:
         print(f"pixelshaper {args.command}: {e}", file=sys.stderr)
         return 1

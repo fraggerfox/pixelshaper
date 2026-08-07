@@ -82,7 +82,8 @@ Three things happened:
    the same 11 rows; Noto's roomier marks allow only 9. If it disappoints,
    your options are a different donor, a curated corpus (drop the deepest
    stacks and hand-compress them later), or pinning higher and accepting
-   clipping warnings as your hand-tuning worklist.
+   clipping warnings as your hand-tuning worklist. Don't decide from this
+   one number — `pixelshaper ppem` (below) shows the whole landscape.
 3. Each glyph became `glyphs/<name>.txt` — files keyed by stable glyph
    *name*, so donor updates can't orphan your edits. Two freshly traced
    examples — the letter അ and the tiny anusvara ം:
@@ -118,9 +119,61 @@ Three things happened:
    These are exactly what you'll hand-edit in Step 6 — the ●/· grid is
    the glyph, the header is its metrics.
 
-**Pin the ppem now** in `pixelshaper.toml` (`ppem = 9`). Future corpus
-extensions must trace on the same grid; unpinned re-traces after a corpus
-change could silently pick a different size.
+### Pinning the ppem — survey the landscape first
+
+Before writing the number into the toml, look at what you'd be choosing
+between:
+
+```
+$ pixelshaper -C examples/noto-sans-malayalam-pixel ppem
+donor: NotoSansMalayalam-Regular.ttf  upem 1000  strip 11 rows
+
+self-scale ppem per corpus line (hardest first):
+    9.3  ( 1180 units)  തലശ്ശേരി
+    9.5  ( 1155 units)  അരശ്ശ്
+    9.9  ( 1113 units)  വ്യക്തി
+   10.3  ( 1070 units)  തിരുവനന്തപുരം
+   12.2  (  903 units)  ഇഫാക്ല
+   13.3  (  830 units)  സന്തോഷ്
+   13.9  (  794 units)  അ ആ ഇ ഈ ഉ ഊ ഋ എ ഏ ഐ ഒ ഓ…
+   14.3  (  767 units)  മലയാളം
+   14.3  (  767 units)  കേരളം
+
+suggestion (every corpus line fits):  9
+glyph ceiling (tallest single glyph): 12.2  (shashamlym, 903 units)
+tallest glyphs: shashamlym (903), kalamlym (903), ivowelsignmlym (843), yapostmlym (824), emlym (794)
+
+candidate ppem -> corpus lines clipping (worst overflow):
+    9  all fit
+   10  3/9 clip  (worst +0.8px: തലശ്ശേരി)
+   11  4/9 clip  (worst +2.0px: തലശ്ശേരി)
+   12  4/9 clip  (worst +3.2px: തലശ്ശേരി)
+   13  5/9 clip  (worst +4.3px: തലശ്ശേരി)
+   14  7/9 clip  (worst +5.5px: തലശ്ശേരി)
+   15  9/9 clip  (worst +6.7px: തലശ്ശേരി)
+```
+
+How to read it:
+
+- **self-scale per line** is what per-message scaling would give each
+  line on its own: easy words could enjoy 14+, but the ശ്ശ words drag
+  the common grid down to 9. The spread between the top and bottom of
+  this table is what a fixed grid costs you — and a corpus *curated away
+  from the hard lines* would move the suggestion up.
+- **glyph ceiling** is a hard limit: above 12.2 the ശ്ശ ligature itself
+  no longer fits the strip, no matter how lines are placed. Candidates
+  beyond the ceiling mean redrawing that glyph shorter by hand, not just
+  nudging it.
+- **The overflow table prices each candidate.** Pinning 10 costs three
+  clipping lines at under a pixel each — very payable with small mark
+  compressions. Pinning 14 costs 7/9 lines and +5.5 px — a redesign, not
+  a touch-up. This is exactly the trade the Manjari example took (pinned
+  14 against a suggestion of 10) and paid off across ~55 hand-edits.
+
+The Noto example stays at the safe suggestion: **pin `ppem = 9`** in
+`pixelshaper.toml`. Future corpus extensions must trace on the same
+grid; unpinned re-traces after a corpus change could silently pick a
+different size.
 
 Re-running `trace` later only fills gaps: existing files are skipped
 (`--force` overwrites everything — it destroys hand-edits, so almost
