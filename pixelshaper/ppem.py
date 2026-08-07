@@ -4,7 +4,7 @@ Three numbers matter when choosing a ppem, and this report shows all of
 them per project:
 
 - **self-scale** per corpus line: the size per-message scaling (the
-  simulator's font mode, or stripshaper) would pick for that line alone
+  simulator's font mode, or font2badge) would pick for that line alone
   (``strip_height x upem / span``). The hardest line's value is the safe
   suggestion; the easiest line's value is what the corpus could enjoy if
   the hard lines didn't exist.
