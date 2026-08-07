@@ -174,6 +174,22 @@ corollary: changing `ppem`/`threshold` after tracing makes *everything*
 report as edited, because the auto-trace baseline moved — pin your
 config.
 
+### `pixelshaper ppem`
+
+The sizing landscape behind the ppem decision, before (or after) you pin
+it. For every corpus line it prints the **self-scale ppem** — the size
+per-message scaling would pick for that line alone (`strip_height ×
+upem ÷ span`); the hardest line's value is the safe suggestion, the
+easiest line's shows what the corpus is giving up. Alongside: the
+**glyph ceiling** (the largest size at which the tallest single glyph
+still fits the strip — nothing above it can render whole, the five
+tallest glyphs are named) and an **overflow table** listing, for each
+candidate ppem from the suggestion up, how many corpus lines clip and
+by how many pixels. Pinning above the suggestion is a promise to
+hand-compress exactly those lines — ManjariPixel's pin of 14 against a
+suggestion of 10 is four rows of that debt, paid in ്യ/ി/ു/ശ്ശ
+compressions.
+
 ## Development
 
 ```sh

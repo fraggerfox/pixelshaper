@@ -16,7 +16,8 @@ pixelshaper/          the library (CLI = thin wrapper, keep it that way)
   build.py            glyphs/ -> build/<Family>.ttf
   render.py           native-ppem 1-bit render -> terminal + PNG
   status.py           coverage report (hand-edit detection)
-  cli.py              pixelshaper -C <project> {trace,build,render,status}
+  ppem.py             sizing report (self-scale per line, glyph ceiling)
+  cli.py              pixelshaper -C <project> {trace,build,render,status,ppem}
 examples/             manjari-pixel (54 hand-edits), nupuram-pixel,
                       noto-sans-malayalam-pixel (raw auto-trace, USAGE subject)
 ```
