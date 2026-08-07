@@ -20,6 +20,20 @@ with its OpenType shaping intact.*
 > single-font projects — [manjari-pixel] and [nupuram-pixel], both Malayalam —
 > which this project generalizes. See [DESIGN.md](DESIGN.md) for the plan.
 
+## Contents
+
+- [The idea](#the-idea)
+- [Why text-art glyph files](#why-text-art-glyph-files)
+- [Provenance](#provenance)
+- [Usage](#usage)
+- [Commands](#commands)
+  - [`pixelshaper trace [--force]`](#pixelshaper-trace---force)
+  - [`pixelshaper build`](#pixelshaper-build)
+  - [`pixelshaper render [TEXTS...] [--gap N] [--shared]`](#pixelshaper-render-texts---gap-n---shared)
+  - [`pixelshaper status`](#pixelshaper-status)
+  - [`pixelshaper ppem`](#pixelshaper-ppem)
+- [Development](#development)
+
 ## The idea
 
 Outline fonts fail on tiny pixel grids (LED matrices, e-paper tickers,
