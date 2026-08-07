@@ -1,6 +1,6 @@
 [project]
 name = "pixelshaper"
-version = "0.1.1"
+version = "0.1.2"
 description = "Shaping-aware pixel fonts: derive hand-tunable pixel fonts from OpenType donors, GSUB/GPOS intact"
 requires-python = ">=3.12"
 dependencies = [
