@@ -3,6 +3,12 @@
 **Shaping-aware pixel fonts** — derive hand-tunable pixel fonts from any
 OpenType donor, GSUB/GPOS intact.
 
+This is the crafted pipeline. If you just want text on a badge in one
+command — no font conversion, no hand-editing —
+[font2badge](https://github.com/fraggerfox/font2badge) is the simple
+sibling; come back here when its thresholding artifacts start to bother
+you.
+
 > [!NOTE]
 > **AI-generated code.** This repository was developed with
 > [Claude Code](https://claude.com/claude-code): the tooling code and
@@ -193,9 +199,11 @@ config.
 
 The sizing landscape behind the ppem decision, before (or after) you pin
 it. For every corpus line it prints the **self-scale ppem** — the size
-per-message scaling would pick for that line alone (`strip_height ×
-upem ÷ span`); the hardest line's value is the safe suggestion, the
-easiest line's shows what the corpus is giving up. Alongside: the
+per-message scaling (what
+[font2badge](https://github.com/fraggerfox/font2badge) does) would pick
+for that line alone (`strip_height × upem ÷ span`); the hardest line's
+value is the safe suggestion, the easiest line's shows what the corpus
+is giving up. Alongside: the
 **glyph ceiling** (the largest size at which the tallest single glyph
 still fits the strip — nothing above it can render whole, the five
 tallest glyphs are named) and an **overflow table** listing, for each
