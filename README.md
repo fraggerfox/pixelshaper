@@ -124,7 +124,8 @@ example traced only the new ശ്ശ ligature and left 70 hand-edited files
 untouched. If `ppem` is unpinned it prints a suggestion — the largest
 size where the worst corpus line fits `strip_height` rows (14 for
 Manjari, 9 for Noto and Mukta on 11 rows: donor proportions in one
-number) — pin it in the toml immediately afterwards.
+number) — pin it in the toml immediately afterwards. Before pinning,
+`pixelshaper ppem` shows the full landscape behind that number.
 
 `--force` retraces everything, **destroying hand-edits**. Only safe when
 `status` reports `hand-edited: 0` — that's how the Noto example's
