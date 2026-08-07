@@ -65,6 +65,28 @@ Dev shell: `nix develop` (uv + native libs). Run everything as
   glyph-by-glyph before committing and describe them in the message
   (which letters, what changed, why).
 
+## Commits & releases
+
+- **Conventional Commits are required for PR titles** (enforced by
+  `.github/workflows/pr-title.yml`). We squash-merge, so the PR title
+  becomes the commit on main — write it as `type: summary`
+  (`feat`, `fix`, `docs`, `ci`, `test`, `build`, `chore`, `refactor`,
+  `perf`, `style`, `revert`; `type!:` or a `BREAKING CHANGE:` footer for
+  breaking).
+- **Only `feat:`/`fix:`/breaking bump the version;** everything else just
+  lands in the changelog. So a glyph hand-tuning or new-conjunct PR is a
+  `feat:`, a rendering bug is a `fix:`, doc/tooling/test PRs are their own
+  types and cut no release.
+- **Releases are automated by release-please** (`.github/workflows/cd.yaml`).
+  It keeps a standing "release PR" that bumps the version and CHANGELOG;
+  merging *that* PR tags `vX.Y.Z`. Never bump the version by hand.
+- **The version lives in two files, kept in sync by release-please:**
+  `pyproject.toml` (via the `python` release-type) and
+  `pixelshaper/__init__.py` (via the `# x-release-please-version`
+  annotation on the `__version__` line — keep that comment). The seed is
+  `.release-please-manifest.json`; pre-1.0 bump flags in
+  `release-please-config.json` keep breaking changes inside 0.x.
+
 ## Related (not in this repo)
 
 - Living parents: `../manjari-pixel/` (consumes pixelshaper as editable
