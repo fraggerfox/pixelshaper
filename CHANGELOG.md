@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/fraggerfox/pixelshaper/compare/pixelshaper-v0.1.1...pixelshaper-v0.1.2) (2026-08-07)
+
+
+### Documentation
+
+* record Conventional Commits and release-please conventions ([#9](https://github.com/fraggerfox/pixelshaper/issues/9)) ([c0f95d1](https://github.com/fraggerfox/pixelshaper/commit/c0f95d1abf736c824843646bc9513712c69fc12b))
+
 ## [0.1.1](https://github.com/fraggerfox/pixelshaper/compare/pixelshaper-v0.1.0...pixelshaper-v0.1.1) (2026-08-07)
 
 
