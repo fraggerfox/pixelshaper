@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: astral-sh/setup-uv@v9.0.0
+      - uses: astral-sh/setup-uv@v10.0.1
       # ruff comes via uvx here (plain Linux runners take the pip wheel
       # fine; only the NixOS dev shell needs it from nixpkgs). Its config
       # lives in pyproject.toml either way.
@@ -33,7 +33,7 @@ jobs:
         shell: bash
     steps:
       - uses: actions/checkout@v7
-      - uses: astral-sh/setup-uv@v9.0.0
+      - uses: astral-sh/setup-uv@v10.0.1
       - run: uv sync
       - name: pytest with coverage
         run: |
