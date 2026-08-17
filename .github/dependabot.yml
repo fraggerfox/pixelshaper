@@ -5,6 +5,11 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    # Conventional Commits title (ci(deps): ...) so the PR-title check
+    # passes and release-please files it under CI in the changelog.
+    commit-message:
+      prefix: "ci"
+      include: "scope"
     pull-request-branch-name:
       separator: '-'
     groups:
@@ -19,6 +24,11 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    # Conventional Commits title (build(deps): ...) — dependency bumps
+    # are build-system changes; no release-please version bump.
+    commit-message:
+      prefix: "build"
+      include: "scope"
     pull-request-branch-name:
       separator: '-'
     groups:
