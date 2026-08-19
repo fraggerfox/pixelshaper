@@ -3,6 +3,12 @@
 Files are keyed by GLYPH NAME (not gid): donor updates may renumber glyph
 indices, but names are stable, so hand-edits survive. The filename is a
 sanitized form of the name; the authoritative name lives in the header.
+
+On disk the grid is written space-separated (two columns per pixel):
+terminal/editor cells are ~2x taller than wide, so unspaced grids look
+horizontally squished while hand-editing. Spaces are visual separators,
+never cells — the parser strips them, so compact one-char-per-pixel
+files remain valid input and in-memory rows are always compact.
 """
 
 import re
@@ -49,7 +55,7 @@ def parse(path: Path) -> GlyphArt:
         if not rows and (m := _HEADER_RE.match(line)):
             head[m.group(1)] = m.group(2).strip()
         elif line.strip():
-            rows.append(line)
+            rows.append(line.replace(" ", ""))  # spaces are separators
     missing = {"name", "advance", "left", "top"} - head.keys()
     if missing:
         raise ValueError(f"{path}: missing header fields {sorted(missing)}")
@@ -71,7 +77,8 @@ def write(art: GlyphArt, glyph_dir: Path) -> Path:
         f"left: {art.left}",
         f"top: {art.top}",
     ]
-    out.write_text("\n".join(header + [""] + art.rows) + "\n", encoding="utf-8")
+    spaced = [" ".join(row) for row in art.rows]
+    out.write_text("\n".join(header + [""] + spaced) + "\n", encoding="utf-8")
     return out
 
 

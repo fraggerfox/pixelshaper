@@ -44,3 +44,21 @@ def test_ink_span_ignores_blank_rows():
     assert art.ink_span == (7, 4)
     blank = glyphart.GlyphArt(name="sp", advance=2, left=0, top=0, rows=[])
     assert blank.ink_span is None
+
+
+def test_spaced_and_compact_files_parse_identically(tmp_path):
+    header = "name: x\nadvance: 3\nleft: 0\ntop: 2\n\n"
+    compact = tmp_path / "compact.txt"
+    spaced = tmp_path / "spaced.txt"
+    compact.write_text(header + "●·●\n·●·\n", encoding="utf-8")
+    spaced.write_text(header + "● · ●\n· ● ·\n", encoding="utf-8")
+    a, b = glyphart.parse(compact), glyphart.parse(spaced)
+    assert a.rows == b.rows == ["●·●", "·●·"]
+
+
+def test_write_emits_spaced_and_round_trips(tmp_path):
+    art = glyphart.GlyphArt(name="x", advance=3, left=0, top=2, rows=["●·●", "·●·"])
+    p = glyphart.write(art, tmp_path)
+    text = p.read_text(encoding="utf-8")
+    assert "● · ●" in text  # visually square on disk
+    assert glyphart.parse(p) == art  # compact in memory
