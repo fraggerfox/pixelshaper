@@ -118,7 +118,9 @@ def render_cli(project: Project, texts, gap=3, shared=False, log=print):
         bits = render_text(project, text, gap=gap, shared=shared, log=log)
         out = save_png(project, bits, text)
         log(f"\n=== {text}  ({bits.shape[1]}x{bits.shape[0]})  -> {out.name} ===")
+        # Two columns per pixel: terminal cells are ~2x taller than wide, so
+        # a one-char-per-pixel grid renders horizontally squished.
         for row in bits:
-            log("".join(glyphart.ON if p else glyphart.OFF for p in row))
+            log(" ".join(glyphart.ON if p else glyphart.OFF for p in row))
         results.append(out)
     return results

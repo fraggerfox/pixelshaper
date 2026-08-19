@@ -3,4 +3,4 @@ advance: 5
 left: 0
 top: 4
 
-·●●●●
+· ● ● ● ●

@@ -3,5 +3,5 @@ advance: 0
 left: -2
 top: 8
 
-●●
-●●
+● ●
+● ●

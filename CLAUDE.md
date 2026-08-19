@@ -11,6 +11,8 @@ decisions and the work-item tiers.
 pixelshaper/          the library (CLI = thin wrapper, keep it that way)
   config.py           pixelshaper.toml + corpus.txt -> Project
   glyphart.py         ●/· text-art format, NAME-keyed files
+                      (spaced on disk for square editing aspect;
+                      parser strips spaces, compact files stay valid)
   donor.py            fontTools+FreeType+HarfBuzz wrapper
   trace.py            donor+corpus -> glyphs/*.txt (skip-existing)
   build.py            glyphs/ -> build/<Family>.ttf
