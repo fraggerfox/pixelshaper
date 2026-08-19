@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.3](https://github.com/fraggerfox/pixelshaper/compare/pixelshaper-v0.1.2...pixelshaper-v0.1.3) (2026-08-19)
+
+
+### Features
+
+* space-separated glyph files with tolerant parser ([#14](https://github.com/fraggerfox/pixelshaper/issues/14)) ([a6fd292](https://github.com/fraggerfox/pixelshaper/commit/a6fd29273444b5415d2b1b22746b01419b58fa3d))
+
 ## [0.1.2](https://github.com/fraggerfox/pixelshaper/compare/pixelshaper-v0.1.1...pixelshaper-v0.1.2) (2026-08-07)
 
 
