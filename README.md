@@ -221,3 +221,7 @@ nix develop     # python + uv dev shell with the native libs
 
 Tooling stack: HarfBuzz (uharfbuzz), FreeType (freetype-py), fontTools,
 numpy, Pillow.
+
+## License
+
+[BSD 2-Clause](LICENSE)
