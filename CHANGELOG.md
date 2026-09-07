@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.1.4](https://github.com/fraggerfox/pixelshaper/compare/pixelshaper-v0.1.3...pixelshaper-v0.1.4) (2026-09-07)
+
+
+### Features
+
+* hand-tune ക (k1) ([#19](https://github.com/fraggerfox/pixelshaper/issues/19)) ([df4043b](https://github.com/fraggerfox/pixelshaper/commit/df4043bb9fc740fed6cf382cafb4725f70755cec))
+
+
+### Documentation
+
+* link the BSD 2-Clause license from the README ([#16](https://github.com/fraggerfox/pixelshaper/issues/16)) ([49c2afe](https://github.com/fraggerfox/pixelshaper/commit/49c2afeac20fb3bfdfe40e345beb2105a11c7b1e))
+
 ## [0.1.3](https://github.com/fraggerfox/pixelshaper/compare/pixelshaper-v0.1.2...pixelshaper-v0.1.3) (2026-08-19)
 
 
